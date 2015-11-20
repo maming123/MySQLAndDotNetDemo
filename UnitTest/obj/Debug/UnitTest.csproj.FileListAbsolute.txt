@@ -1,0 +1,9 @@
+E:\MyProject\MySQLDemo\UnitTest\bin\Debug\UnitTest.dll.config
+E:\MyProject\MySQLDemo\UnitTest\bin\Debug\UnitTest.dll
+E:\MyProject\MySQLDemo\UnitTest\bin\Debug\UnitTest.pdb
+E:\MyProject\MySQLDemo\UnitTest\bin\Debug\MySql.Data.dll
+E:\MyProject\MySQLDemo\UnitTest\bin\Debug\MySQLDemo.dll
+E:\MyProject\MySQLDemo\UnitTest\bin\Debug\MySQLDemo.pdb
+E:\MyProject\MySQLDemo\UnitTest\obj\Debug\UnitTest.csprojResolveAssemblyReference.cache
+E:\MyProject\MySQLDemo\UnitTest\obj\Debug\UnitTest.dll
+E:\MyProject\MySQLDemo\UnitTest\obj\Debug\UnitTest.pdb

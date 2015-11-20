@@ -1,0 +1,5 @@
+E:\MyProject\MySQLDemo\WebApp\bin\WebApp.dll
+E:\MyProject\MySQLDemo\WebApp\bin\WebApp.pdb
+E:\MyProject\MySQLDemo\WebApp\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
+E:\MyProject\MySQLDemo\WebApp\obj\Debug\WebApp.dll
+E:\MyProject\MySQLDemo\WebApp\obj\Debug\WebApp.pdb
