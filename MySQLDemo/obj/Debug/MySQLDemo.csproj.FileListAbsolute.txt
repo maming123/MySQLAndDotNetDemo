@@ -5,3 +5,9 @@ E:\MyProject\MySQLDemo\MySQLDemo\bin\Debug\MySql.Data.dll
 E:\MyProject\MySQLDemo\MySQLDemo\obj\Debug\MySQLDemo.dll
 E:\MyProject\MySQLDemo\MySQLDemo\obj\Debug\MySQLDemo.pdb
 E:\MyProject\MySQLDemo\MySQLDemo\obj\Debug\MySQLDemo.csprojResolveAssemblyReference.cache
+E:\MyProject\MySQLAndDotNetDemo\MySQLDemo\bin\Debug\MySQLDemo.dll.config
+E:\MyProject\MySQLAndDotNetDemo\MySQLDemo\bin\Debug\MySQLDemo.dll
+E:\MyProject\MySQLAndDotNetDemo\MySQLDemo\bin\Debug\MySQLDemo.pdb
+E:\MyProject\MySQLAndDotNetDemo\MySQLDemo\bin\Debug\MySql.Data.dll
+E:\MyProject\MySQLAndDotNetDemo\MySQLDemo\obj\Debug\MySQLDemo.dll
+E:\MyProject\MySQLAndDotNetDemo\MySQLDemo\obj\Debug\MySQLDemo.pdb

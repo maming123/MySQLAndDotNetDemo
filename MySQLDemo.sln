@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{9C3A0EF8-1E61-44B7-B563-FD49B279CF6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateMySql", "NHibernateMySql\NHibernateMySql.csproj", "{D9780F14-A8E8-4ACC-B381-9F3CA1D64527}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nhibernate", "Nhibernate", "{B2CA17FD-69C4-4125-AAC1-0E8784FF27BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,15 @@ Global
 		{9C3A0EF8-1E61-44B7-B563-FD49B279CF6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C3A0EF8-1E61-44B7-B563-FD49B279CF6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C3A0EF8-1E61-44B7-B563-FD49B279CF6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9780F14-A8E8-4ACC-B381-9F3CA1D64527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9780F14-A8E8-4ACC-B381-9F3CA1D64527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9780F14-A8E8-4ACC-B381-9F3CA1D64527}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9780F14-A8E8-4ACC-B381-9F3CA1D64527}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D9780F14-A8E8-4ACC-B381-9F3CA1D64527} = {B2CA17FD-69C4-4125-AAC1-0E8784FF27BE}
 	EndGlobalSection
 EndGlobal

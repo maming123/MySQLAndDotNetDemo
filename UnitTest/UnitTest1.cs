@@ -3,6 +3,7 @@ using System.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MySql.Data.MySqlClient;
 using MySQLDemo;
+using NHibernateMySql;
 using Util;
 
 namespace UnitTest
@@ -10,6 +11,11 @@ namespace UnitTest
     [TestClass]
     public class UnitTest1
     {
+        [TestMethod]
+        public void TestMethod3()
+        {
+            NhbCls.HelloNhibernate();
+        }
         [TestMethod]
         public void TestMethod2()
         {
