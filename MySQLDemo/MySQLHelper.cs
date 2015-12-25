@@ -13,7 +13,7 @@ namespace Util
     {
         #region [ Connection ]
         //public static string connectionString = "Database=firstmysqldb;Data Source=localhost;Port=3306;User Id=root;Password=??;Charset=utf8;TreatTinyAsBoolean=false;";
-        public static string connectionString = ConfigurationManager.ConnectionStrings["RCS"].ConnectionString;
+        public readonly static string connectionString = ConfigurationManager.ConnectionStrings["RCS"].ConnectionString;
         public static MySqlConnection GetConnection
         {
             get
@@ -35,6 +35,17 @@ namespace Util
             return ExecuteNonQuery(cmdText, CommandType.Text, commandParameters);
         }
         /// <summary>
+        /// 普通SQL语句执行增删改
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="cmdText">SQL语句</param>
+        /// <param name="commandParameters">可变参数</param>
+        /// <returns>受影响行数</returns>
+        public static int ExecuteNonQuery(string connectionString, string cmdText, params MySqlParameter[] commandParameters)
+        {
+            return ExecuteNonQuery(connectionString,cmdText, CommandType.Text, commandParameters);
+        }
+        /// <summary>
         /// 存储过程执行增删改
         /// </summary>
         /// <param name="cmdText">存储过程</param>
@@ -43,6 +54,17 @@ namespace Util
         public static int ExecuteNonQueryByProc(string cmdText, params MySqlParameter[] commandParameters)
         {
             return ExecuteNonQuery(cmdText, CommandType.StoredProcedure, commandParameters);
+        }
+        /// <summary>
+        /// 存储过程执行增删改
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="cmdText">存储过程</param>
+        /// <param name="commandParameters">可变参数</param>
+        /// <returns>受影响行数</returns>
+        public static int ExecuteNonQueryByProc(string connectionString, string cmdText, params MySqlParameter[] commandParameters)
+        {
+            return ExecuteNonQuery(connectionString,cmdText, CommandType.StoredProcedure, commandParameters);
         }
         /// <summary>
         /// 执行增删改
@@ -56,6 +78,38 @@ namespace Util
             int result = 0;
 
             using (MySqlConnection conn = GetConnection)
+            {
+                try
+                {
+                    MySqlCommand command = new MySqlCommand();
+                    PrepareCommand(command, conn, cmdType, cmdText, commandParameters);
+                    result = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    if (conn != null && conn.State != ConnectionState.Closed)
+                        conn.Close();
+                }
+            }
+            return result;
+        }
+        /// <summary>
+        /// 执行增删改
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="cmdText">命令字符串</param>
+        /// <param name="cmdType">命令类型</param>
+        /// <param name="commandParameters">可变参数</param>
+        /// <returns>受影响行数</returns>
+        public static int ExecuteNonQuery(string connectionString, string cmdText, CommandType cmdType, params MySqlParameter[] commandParameters)
+        {
+            int result = 0;
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 try
                 {
@@ -89,6 +143,17 @@ namespace Util
             return ExecuteReader(cmdText, CommandType.Text, commandParameters);
         }
         /// <summary>
+        /// SQL语句得到 MySqlDataReader 对象
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="cmdText">命令字符串</param>
+        /// <param name="commandParameters">可变参数</param>
+        /// <returns>MySqlDataReader 对象</returns>
+        public static MySqlDataReader ExecuteReader(string connectionString, string cmdText, params MySqlParameter[] commandParameters)
+        {
+            return ExecuteReader(connectionString,cmdText, CommandType.Text, commandParameters);
+        }
+        /// <summary>
         /// 存储过程得到 MySqlDataReader 对象
         /// </summary>
         /// <param name="cmdText">命令字符串</param>
@@ -97,6 +162,17 @@ namespace Util
         public static MySqlDataReader ExecuteReaderByProc(string cmdText, params MySqlParameter[] commandParameters)
         {
             return ExecuteReader(cmdText, CommandType.StoredProcedure, commandParameters);
+        }
+        /// <summary>
+        /// 存储过程得到 MySqlDataReader 对象
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="cmdText">命令字符串</param>
+        /// <param name="commandParameters">可变参数</param>
+        /// <returns>MySqlDataReader 对象</returns>
+        public static MySqlDataReader ExecuteReaderByProc(string connectionString, string cmdText, params MySqlParameter[] commandParameters)
+        {
+            return ExecuteReader(connectionString, cmdText, CommandType.StoredProcedure, commandParameters);
         }
         /// <summary>
         /// 得到 MySqlDataReader 对象
@@ -110,6 +186,39 @@ namespace Util
             MySqlDataReader result = null;
 
             using (MySqlConnection conn = GetConnection)
+            {
+                try
+                {
+                    MySqlCommand command = new MySqlCommand();
+                    PrepareCommand(command, conn, cmdType, cmdText, commandParameters);
+                    result = command.ExecuteReader(CommandBehavior.CloseConnection);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    if (conn != null && conn.State != ConnectionState.Closed)
+                        conn.Close();
+                }
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// 得到 MySqlDataReader 对象
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="cmdText">命令字符串</param>
+        /// <param name="cmdType">命令类型</param>
+        /// <param name="commandParameters">可变参数</param>
+        /// <returns>MySqlDataReader 对象</returns>
+        public static MySqlDataReader ExecuteReader(string connectionString, string cmdText, CommandType cmdType, params MySqlParameter[] commandParameters)
+        {
+            MySqlDataReader result = null;
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 try
                 {
@@ -167,6 +276,41 @@ namespace Util
             DataSet result = null;
 
             using (MySqlConnection conn = GetConnection)
+            {
+                try
+                {
+                    MySqlCommand command = new MySqlCommand();
+                    PrepareCommand(command, conn, cmdType, cmdText, commandParameters);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = command;
+                    result = new DataSet();
+                    adapter.Fill(result);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    if (conn != null && conn.State != ConnectionState.Closed)
+                        conn.Close();
+                }
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// 返回DataSet
+        /// </summary>
+        /// <param name="cmdText">命令字符串</param>
+        /// <param name="cmdType">命令类型</param>
+        /// <param name="commandParameters">可变参数</param>
+        /// <returns> DataSet </returns>
+        public static DataSet ExecuteDataSet(string connectionString, string cmdText, CommandType cmdType, params MySqlParameter[] commandParameters)
+        {
+            DataSet result = null;
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 try
                 {

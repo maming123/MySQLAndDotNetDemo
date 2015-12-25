@@ -204,7 +204,7 @@ namespace Models.RCS
 
 
 
-		[Column] public string Id { get; set; }
+		[Column] public Guid Id { get; set; }
 
 
 
